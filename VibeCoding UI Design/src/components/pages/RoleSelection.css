@@ -1,0 +1,119 @@
+/* RoleSelection.css */
+
+.background-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Background image will be set inline in the component */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  position: relative; /* Needed for the overlay */
+}
+
+.background-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4); /* Dark overlay */
+}
+
+.card-container {
+  /* Mimicking the glassmorphism card from Landing.css */
+  width: 90%;
+  max-width: 1200px;
+  min-height: 80vh; /* Changed from fixed height to min-height */
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px); /* The blurring effect */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 15px; /* Use the original 15px radius */
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  z-index: 10; /* Ensure it is above the overlay */
+}
+
+/* Styles for the inner content */
+.header-text {
+  text-align: center;
+  margin-bottom: 3rem;
+  color: white; /* Text color inside the glass card */
+}
+
+.header-text h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.header-text p {
+  font-size: 1.1rem;
+  opacity: 0.8;
+}
+
+.logo-img {
+  height: 8rem;
+  width: auto;
+  margin-bottom: 1.5rem;
+}
+
+.role-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  margin-bottom: 2rem;
+}
+
+.role-card {
+  /* Style the role card to look distinct */
+  background-color: rgba(255, 255, 255, 0.85); /* Slightly solid background for readability */
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.role-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.card-icon-wrapper {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  transition: transform 0.3s;
+}
+
+.role-card:hover .card-icon-wrapper {
+  transform: scale(1.1);
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.card-description {
+  color: #666;
+}
+
+.footer-text {
+  text-align: center;
+  color: white;
+  opacity: 0.7;
+  font-weight: 500;
+}

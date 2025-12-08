@@ -1,0 +1,134 @@
+/* Full-screen background with overlay */
+.login-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* form left-aligned */
+    padding: 2rem;
+    background-image: url('../../assets/img_1.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.login-page::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+
+/* Form container */
+.login-container {
+    position: relative;
+    max-width: 620px; /* larger form width */
+    width: 100%;
+    z-index: 10;
+    margin-left: 15rem; /* space from left */
+    padding: 1rem;
+}
+
+/* Form card */
+.login-card {
+    background-color: white;
+    backdrop-filter: none;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    border-radius: 1rem;
+    padding: 2.5rem; /* more inner spacing */
+    color: #6B46C1; /* purple text for form content */
+}
+
+/* Headings and descriptions */
+.login-card .text-2xl {
+    font-size: 2rem; /* larger for bigger form */
+    font-weight: 700;
+    color: #6B46C1; /* purple */
+}
+
+.login-card .card-description {
+    font-size: 1.125rem; /* slightly larger description */
+    color: #805AD5; /* lighter purple */
+}
+
+/* Labels */
+label {
+    color: #6B46C1; /* purple labels */
+    font-size: 1rem; /* larger relative to form size */
+    font-weight: 500;
+}
+
+/* Back button */
+.back-button {
+    color: white;
+    margin-bottom: 1.5rem;
+}
+
+.back-button:hover {
+    background-color: rgba(255,255,255,0.1);
+}
+
+/* Logo */
+.logo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2.5rem;
+}
+
+/* Form spacing */
+form .space-y-4 > * + * {
+    margin-top: 1.5rem;
+}
+
+/* Submit button */
+.submit-btn {
+    background-color: #9F7AEA; /* purple button */
+    color: white;
+    font-size: 1.5rem; /* larger button text */
+    padding: 1.5rem;
+    width: 100%;
+}
+
+.submit-btn:hover {
+    opacity: 0.9;
+}
+
+/* Forgot password link */
+.forgot-password {
+    color: #9F7AEA;
+    padding: 0;
+    height: auto;
+    font-size: 1rem;
+}
+
+/* Sign up link */
+.signup-link {
+    color: #9F7AEA;
+    padding: 0;
+    height: auto;
+    font-size: 1rem;
+}
+
+/* Inputs */
+input {
+    font-size: 1rem; /* bigger input text */
+    color: #4C1D95; /* dark purple */
+    border-color: #D6BCFA; /* subtle purple border */
+}
+
+input::placeholder {
+    color: #A78BFA; /* light purple placeholder */
+}
+
+/* Responsive: center form on small screens */
+@media (max-width: 1024px) {
+    .login-page {
+        justify-content: center;
+        padding: 1rem;
+    }
+    .login-container {
+        margin-left: 0;
+        max-width: 90%;
+    }
+}
