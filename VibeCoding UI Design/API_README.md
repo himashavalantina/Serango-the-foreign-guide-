@@ -11,7 +11,7 @@ npm install
 
 2. Set your Google API key (create a `.env` file):
 ```
-GOOGLE_API_KEY=AIzaSyBi8LlF_KkyuPl6K-xgAbWMn1g_HjlNC8A
+GOOGLE_API_KEY=
 PORT=3001
 ```
 

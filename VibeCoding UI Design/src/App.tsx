@@ -13,7 +13,7 @@ import { NotificationCenter } from "./components/pages/NotificationCenter";
 import { Dashboard } from "./components/pages/Dashboard";
 import { QRVerification } from "./components/pages/QRVerification";
 import { ReviewsGallery } from "./components/pages/ReviewsGallery";
-import { AdminDashboard } from "./components/pages/AdminDashboard";
+//import { AdminDashboard } from "./components/pages/AdminDashboard";
 import { DestinationsPage } from "./components/pages/DestinationsPage";
 import { BidsPage } from "./components/pages/BidsPage";
 import { GuideDashboard } from "./components/pages/GuideDashboard";
@@ -21,9 +21,9 @@ import { GuideBidsPage } from "./components/pages/GuideBidsPage";
 import { GuideAssignedPage } from "./components/pages/GuideAssignedPage";
 import { GuideQRPage } from "./components/pages/GuideQRPage";
 import { GuideReviewsPage } from "./components/pages/GuideReviewsPage";
-import { AdminDestinations } from "./components/pages/AdminDestinations";
-import { AdminGuides } from "./components/pages/AdminGuides";
-import { AdminNotifications } from "./components/pages/AdminNotifications";
+//import { AdminDestinations } from "./components/pages/AdminDestinations";
+//import { AdminGuides } from "./components/pages/AdminGuides";
+//import { AdminNotifications } from "./components/pages/AdminNotifications";
 import Landing from "./components/pages/Landing";
 import SriLankaHero from "./components/pages/SriLankaHero"; // ADD THIS IMPORT
 // @ts-ignore
@@ -112,14 +112,14 @@ export default function App() {
         return <GuideQRPage onNavigate={handleNavigate} />;
       case "guide-reviews":
         return <GuideReviewsPage onNavigate={handleNavigate} />;
-      case "admin-dashboard":
-        return <AdminDashboard onNavigate={handleNavigate} />;
-      case "admin-destinations":
-        return <AdminDestinations onNavigate={handleNavigate} />;
-      case "admin-guides":
-        return <AdminGuides onNavigate={handleNavigate} />;
-      case "admin-notifications":
-        return <AdminNotifications onNavigate={handleNavigate} />;
+      // //case "admin-dashboard":
+      //   return <AdminDashboard onNavigate={handleNavigate} />;
+      // //case "admin-destinations":
+      //   //return <AdminDestinations onNavigate={handleNavigate} />;
+      // //case "admin-guides":
+      //   return <AdminGuides onNavigate={handleNavigate} />;
+      // case "admin-notifications":
+      //   return <AdminNotifications onNavigate={handleNavigate} />;
       case "sri-lanka": // ADD THIS CASE
         return <SriLankaHero />;
       default:

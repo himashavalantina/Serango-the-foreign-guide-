@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import "./SriLankaHero.css";
 import ellaImage from "../../assets/places/ella.png";
 import beautyImage from "../../assets/places/beauty.jpg";
@@ -8,31 +8,57 @@ import peacockImage from "../../assets/places/peacock.jpg";
 import sigiriyaImage from "../../assets/places/sigiriya2.jpg";
 import fishingImage from "../../assets/places/fishing.jpg";
 
-// Add this to your component or in a useEffect
-useEffect(() => {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
+const SriLankaHero: React.FC = () => {
+  const sectionsRef = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    // Simple fade-in animation for all sections
+    const animateOnScroll = () => {
+      const elements = document.querySelectorAll('.fade-in');
+      
+      elements.forEach((element) => {
+        const elementTop = element.getBoundingClientRect().top;
+        const elementVisible = 150;
+        
+        if (elementTop < window.innerHeight - elementVisible) {
+          element.classList.add('visible');
+        }
+      });
+    };
+
+    // Run once on mount
+    animateOnScroll();
+    
+    // Then run on scroll
+    window.addEventListener('scroll', animateOnScroll);
+    
+    // Handle image loading states
+    const images = document.querySelectorAll('.section-image');
+    images.forEach(img => {
+      const frame = img.closest('.image-frame');
+      if (frame) {
+        if (img.complete) {
+          frame.classList.add('loaded');
+        } else {
+          img.addEventListener('load', () => {
+            frame.classList.add('loaded');
+          });
+        }
       }
     });
-  }, {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-  });
 
-  document.querySelectorAll('.info-section, .quick-facts, .final-cta, .gallery-section').forEach(el => {
-    observer.observe(el);
-  });
+    // Cleanup
+    return () => window.removeEventListener('scroll', animateOnScroll);
+  }, []);
 
-  return () => observer.disconnect();
-}, []);
-
-const SriLankaHero: React.FC = () => {
   return (
     <>
       {/* HERO SECTION */}
-      <section className="hero-section" style={{ backgroundImage: `url(${ellaImage})` }}>
+      <section
+        className="hero-section"
+        style={{ backgroundImage: `url(${ellaImage})` }}
+        ref={(el) => (sectionsRef.current[0] = el)}
+      >
         <div className="hero-overlay" />
         <div className="hero-content">
           <h1 className="hero-title">Sri Lanka: The Pearl of the Indian Ocean</h1>
@@ -51,10 +77,12 @@ const SriLankaHero: React.FC = () => {
           <div className="scroll-arrow"></div>
         </div>
       </section>
-      
 
       {/* EXTENDED INFORMATION SECTION */}
-      <section className="sri-lanka-info">
+      <section
+        className="sri-lanka-info"
+        ref={(el) => (sectionsRef.current[1] = el)}
+      >
         <div className="info-header">
           <div className="header-decoration">
             <div className="decoration-line"></div>
@@ -68,15 +96,15 @@ const SriLankaHero: React.FC = () => {
         </div>
 
         {/* CULTURAL HERITAGE */}
-        <div className="info-section cultural-section">
+        <div className="info-section cultural-section fade-in" ref={el => sectionsRef.current[2] = el}>
           <div className="section-content">
             <div className="text-content">
               <div className="section-badge">Heritage</div>
               <h3>Ancient Cultural Heritage</h3>
               <p>
-                Sri Lanka's history spans over 2,500 years, with magnificent ancient cities that showcase 
-                advanced hydraulic engineering and breathtaking architecture. The Cultural Triangle is home 
-                to eight UNESCO World Heritage Sites including the iconic Sigiriya Rock Fortress, sacred 
+                Sri Lanka's history spans over 2,500 years, with magnificent ancient cities that showcase
+                advanced hydraulic engineering and breathtaking architecture. The Cultural Triangle is home
+                to eight UNESCO World Heritage Sites including the iconic Sigiriya Rock Fortress, sacred
                 Temple of the Tooth in Kandy, and the ancient kingdoms of Anuradhapura and Polonnaruwa.
               </p>
               <ul className="feature-list">
@@ -99,11 +127,12 @@ const SriLankaHero: React.FC = () => {
               </ul>
             </div>
             <div className="image-content">
-              <div className="image-frame">
-                <img 
+              <div className="image-frame loading">
+                <img
                   src={sigiriyaImage}
                   alt="Sigiriya Rock Fortress"
                   className="section-image"
+                  onLoad={(e) => e.currentTarget.closest('.image-frame')?.classList.add('loaded')}
                 />
                 <div className="image-overlay"></div>
               </div>
@@ -112,15 +141,15 @@ const SriLankaHero: React.FC = () => {
         </div>
 
         {/* NATURAL BEAUTY */}
-        <div className="info-section nature-section">
+        <div className="info-section nature-section fade-in" ref={el => sectionsRef.current[3] = el}>
           <div className="section-content reverse">
             <div className="text-content">
               <div className="section-badge">Nature</div>
               <h3>Breathtaking Natural Beauty</h3>
               <p>
-                From misty highlands to golden beaches, Sri Lanka offers some of the world's most diverse 
-                landscapes in a compact island. The central highlands feature rolling tea plantations, 
-                dramatic waterfalls, and cool mountain climates, while the coastline boasts pristine beaches 
+                From misty highlands to golden beaches, Sri Lanka offers some of the world's most diverse
+                landscapes in a compact island. The central highlands feature rolling tea plantations,
+                dramatic waterfalls, and cool mountain climates, while the coastline boasts pristine beaches
                 perfect for swimming, surfing, and whale watching.
               </p>
               <ul className="feature-list">
@@ -143,11 +172,12 @@ const SriLankaHero: React.FC = () => {
               </ul>
             </div>
             <div className="image-content">
-              <div className="image-frame">
+              <div className="image-frame loading">
                 <img
                   src={beautyImage}
                   alt="Sri Lankan Landscape"
                   className="section-image"
+                  onLoad={(e) => e.currentTarget.closest('.image-frame')?.classList.add('loaded')}
                 />
                 <div className="image-overlay"></div>
               </div>
@@ -156,14 +186,14 @@ const SriLankaHero: React.FC = () => {
         </div>
 
         {/* WILDLIFE */}
-        <div className="info-section wildlife-section">
+        <div className="info-section wildlife-section fade-in" ref={el => sectionsRef.current[5] = el}>
           <div className="section-content">
             <div className="text-content">
               <div className="section-badge">Wildlife</div>
               <h3>Incredible Wildlife Encounters</h3>
               <p>
-                Sri Lanka is a biodiversity hotspot with 26 national parks and countless nature reserves. 
-                Witness majestic elephants gathering in large herds, elusive leopards in Yala National Park, 
+                Sri Lanka is a biodiversity hotspot with 26 national parks and countless nature reserves.
+                Witness majestic elephants gathering in large herds, elusive leopards in Yala National Park,
                 and the spectacular gathering of blue whales and sperm whales off the southern coast.
               </p>
               <ul className="feature-list">
@@ -186,11 +216,12 @@ const SriLankaHero: React.FC = () => {
               </ul>
             </div>
             <div className="image-content">
-              <div className="image-frame">
+              <div className="image-frame loading">
                 <img
                   src={elephantImage}
                   alt="Sri Lankan Elephant"
                   className="section-image"
+                  onLoad={(e) => e.currentTarget.closest('.image-frame')?.classList.add('loaded')}
                 />
                 <div className="image-overlay"></div>
               </div>
@@ -199,14 +230,14 @@ const SriLankaHero: React.FC = () => {
         </div>
 
         {/* BEACHES & COASTLINE */}
-        <div className="info-section beaches-section">
+        <div className="info-section beaches-section fade-in" ref={el => sectionsRef.current[6] = el}>
           <div className="section-content reverse">
             <div className="text-content">
               <div className="section-badge">Coast</div>
               <h3>Pristine Beaches & Coastal Wonders</h3>
               <p>
-                With endless stretches of golden sand, turquoise waters, and vibrant coral reefs, Sri Lanka's 
-                coastline offers something for every beach lover. From the surfing paradise of Arugam Bay to 
+                With endless stretches of golden sand, turquoise waters, and vibrant coral reefs, Sri Lanka's
+                coastline offers something for every beach lover. From the surfing paradise of Arugam Bay to
                 the tranquil bays of Mirissa and the historic Galle Fort, each coastal region has its unique charm.
               </p>
               <ul className="feature-list">
@@ -229,11 +260,12 @@ const SriLankaHero: React.FC = () => {
               </ul>
             </div>
             <div className="image-content">
-              <div className="image-frame">
+              <div className="image-frame loading">
                 <img
                   src={beachImage}
                   alt="Sri Lankan Beach"
                   className="section-image"
+                  onLoad={(e) => e.currentTarget.closest('.image-frame')?.classList.add('loaded')}
                 />
                 <div className="image-overlay"></div>
               </div>
@@ -242,7 +274,7 @@ const SriLankaHero: React.FC = () => {
         </div>
 
         {/* QUICK FACTS */}
-        <div className="quick-facts">
+        <div className="quick-facts fade-in" ref={el => sectionsRef.current[4] = el}>
           <div className="facts-background"></div>
           <h3>Quick Facts About Sri Lanka</h3>
           <div className="facts-grid">
@@ -270,7 +302,7 @@ const SriLankaHero: React.FC = () => {
         </div>
 
         {/* GALLERY SECTION */}
-        <div className="gallery-section">
+        <div className="gallery-section fade-in" ref={el => sectionsRef.current[7] = el}>
           <h3>Capturing Sri Lankan Moments</h3>
           <div className="gallery-grid">
             <div className="gallery-item large">
@@ -295,7 +327,7 @@ const SriLankaHero: React.FC = () => {
         </div>
 
         {/* CTA SECTION */}
-        <div className="final-cta">
+        <div className="final-cta fade-in" ref={el => sectionsRef.current[8] = el}>
           <div className="cta-background"></div>
           <h3>Ready to Explore Sri Lanka?</h3>
           <p>Start planning your unforgettable journey to the Pearl of the Indian Ocean today</p>

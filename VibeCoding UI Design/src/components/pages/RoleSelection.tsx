@@ -29,13 +29,7 @@ export function RoleSelection({ onNavigate }: RoleSelectionProps) {
       icon: Globe,
       color: "#F7DC79",
     },
-    {
-      id: "admin",
-      title: "Admin",
-      description: "Platform management and guide verification",
-      icon: Shield,
-      color: "#F7DC79",
-    },
+    
   ];
 
   return (

@@ -23,6 +23,7 @@
 .card-container {
   /* Mimicking the glassmorphism card from Landing.css */
   width: 90%;
+
   max-width: 1200px;
   min-height: 80vh; /* Changed from fixed height to min-height */
   background-color: rgba(255, 255, 255, 0.1);
@@ -72,7 +73,7 @@
   /* Style the role card to look distinct */
   background-color: rgba(255, 255, 255, 0.85); /* Slightly solid background for readability */
   border-radius: 10px;
-  padding: 20px;
+  padding: 60px;
   text-align: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s, box-shadow 0.3s;

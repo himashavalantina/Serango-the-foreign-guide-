@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import "./Landing.css";
 import byImage from "../../assets/by.jpg";
+import logoImage from "../../assets/logo.png";
 
 // Import fixed place images
 import kandyImage from "../../assets/places/kandy.png";
@@ -53,7 +54,10 @@ export default function Landing({ onNavigate }: LandingProps) {
             <div className="hero-section">
               <div className="page-indicator"></div>
               <div className="hero-content">
-                <h1>SRI LANKA</h1>
+                <div className="title-logo-container">
+                  <img src={logoImage} alt="Sri Lanka Logo" className="sri-lanka-logo" />
+                  <h1>SRI LANKA</h1>
+                </div>
                 <p>
                   Experience the pearl of the Indian Ocean, a land rich in biodiversity, ancient history,
                   and vibrant culture. Discover beaches, mountains, and temples.

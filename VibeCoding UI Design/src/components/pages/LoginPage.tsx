@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "../ui
 import { ArrowLeft, Shield, User, Globe } from "lucide-react";
 import { Separator } from "../ui/separator";
 import logoImage from "../../assets/logo.png";
-import bgImage from "../../assets/img_1.jpg";
+
 import "./LoginPage.css";
 
 interface LoginPageProps {

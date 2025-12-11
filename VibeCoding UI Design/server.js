@@ -11,7 +11,7 @@ app.use(cors());
 app.use(express.json());
 
 // Initialize Google GenAI
-const ai = new GoogleGenAI({ apiKey: process.env.GOOGLE_API_KEY || "AIzaSyBi8LlF_KkyuPl6K-xgAbWMn1g_HjlNC8A" });
+const ai = new GoogleGenAI({ apiKey: process.env.GOOGLE_API_KEY || "API_KEY" });
 
 // API endpoint for Gemini AI
 app.post('/api/generate', async (req, res) => {
